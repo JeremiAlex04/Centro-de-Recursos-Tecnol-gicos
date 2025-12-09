@@ -1,0 +1,2 @@
+iwr -useb https://christitus.com/win | iex
+ingresar este codigo en Windows PowerShell(Administrador)

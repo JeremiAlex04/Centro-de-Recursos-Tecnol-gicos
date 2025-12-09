@@ -1,0 +1,9 @@
+
+1. diskpart
+2. list disk
+3. select disk ?
+>> Elegir el USB 
+4. detail disk
+5. clean
+
+Habilitar el volumen del USB en ADMINISTRACION DE EQUIPOS
