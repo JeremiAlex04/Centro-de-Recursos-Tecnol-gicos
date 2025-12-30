@@ -1,8 +1,5 @@
 # 🖥️ Centro de Recursos Tecnológicos (CRT)
 
-![Banner Principal](https://via.placeholder.com/1200x300?text=Centro+de+Recursos+Tecnológicos+Banner)
-<div align="center">
-
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-En_Desarrollo-orange?style=for-the-badge)
 ![Licencia](https://img.shields.io/badge/Licencia-MIT-blue?style=for-the-badge)
 ![Versión](https://img.shields.io/badge/Versión-1.0.0-green?style=for-the-badge)
@@ -49,12 +46,6 @@ Este proyecto ha sido construido con las siguientes herramientas:
 
 ---
 
-## 📸 Capturas de Pantalla
-
-| Panel de Control | Inventario |
-|:----------------:|:----------:|
-| ![Dashboard](https://via.placeholder.com/400x200?text=Dashboard) | ![Inventario](https://via.placeholder.com/400x200?text=Vista+Inventario) |
----
 
 ## 🔧 Instalación y Despliegue
 
