@@ -100,6 +100,6 @@ Este proyecto está bajo la Licencia **MIT**. Consulta el archivo `LICENSE` para
 
 <div align="center">
 
-Desarrollado con ❤️ por **[JeremiAlex04](https://github.com/JeremiAlex04)**
+Documentado por **[JeremiAlex04](https://github.com/JeremiAlex04)**
 
 </div>
