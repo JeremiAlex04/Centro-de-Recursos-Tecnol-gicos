@@ -1,0 +1,5 @@
+Pagina Oficial:
+https://massgrave.dev/
+
+Comando:
+irm https://get.activated.win | iex
