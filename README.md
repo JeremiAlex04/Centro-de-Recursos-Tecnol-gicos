@@ -42,3 +42,20 @@ Colección organizada de guías, herramientas y recursos para mantenimiento, rep
 - Los archivos binarios grandes se mantienen bajo seguimiento Git LFS según .gitattributes.
 - Se han creado README.md descriptivos para guías/enlaces sin modificar los archivos originales cuando es posible.
 - Los archivos .txt originales con documentación de herramientas han sido referenciados en los README organizados.
+
+## Organización actualizada
+
+- [Scripts/](Scripts/) - Scripts y guías ejecutables
+- [Documentacion/](Documentacion/) - Guías y referencias
+- [Recursos/](Recursos/) - Drivers, SQL, Virtualización, etc.
+- [Herramientas/](Herramientas/) - Herramientas organizadas por función
+
+### Scripts
+- [Habilitar gpedit.msc](Scripts/Windows/Group-Policy-Editor/README.md)
+- [KMS Tools (info)](Scripts/Activacion/KMS-Tools/README.md)
+
+### Recursos
+- [Drivers de impresoras (enlace)](Recursos/Drivers/)
+- [SQL Server versiones antiguas](Recursos/SQL/)
+- [Máquinas Virtuales](Recursos/Virtualizacion/)
+
