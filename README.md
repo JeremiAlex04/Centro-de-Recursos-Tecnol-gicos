@@ -1,4 +1,4 @@
-# Centro de Recursos Tecnológicos
+﻿# Centro de Recursos Tecnológicos
 
 Colección organizada de guías, herramientas y recursos para mantenimiento, reparación, activación y soporte informático.
 
@@ -37,6 +37,24 @@ recursos
 | `recursos export-offline E:\` | Exporta todo el catálogo y binarios a un pendrive USB para emergencias sin internet |
 | `recursos clean` | Limpia los binarios y archivos temporales descargados en caché |
 | `recursos plugin list` | Gestiona módulos opcionales (ej.: activación de Windows/Office) |
+
+
+---
+
+## 🖥️ Aplicación de Escritorio Gráfica
+
+Si prefieres una interfaz visual con ventanas, tarjetas interactivas y botones:
+
+1. Haz doble clic en el archivo **Iniciar_Centro_Recursos.bat** (en la raíz del repositorio).
+2. O escribe en la terminal: ecursos gui (o ecursos-gui).
+
+### Características de la App de Escritorio:
+- **Tarjetas visuales** con descripción clara de **cuándo y cómo aplicar** cada herramienta en soporte técnico.
+- **Búsqueda en tiempo real**: filtra por síntomas (ej.: *wifi, lentitud, formateo, desinstalar*).
+- **Asistente de diagnóstico integrado**: haz clic en el problema y te sugiere la herramienta exacta.
+- **Evaluación de salud del PC (Doctor)**: monitorea memoria, discos C: y D:, internet y permisos de administrador.
+- **Modo Oscuro / Claro** con diseño moderno nativo para Windows.
+- **Ejecución y visor de guías** en ventana emergente con consola de progreso en vivo.
 
 ---
 

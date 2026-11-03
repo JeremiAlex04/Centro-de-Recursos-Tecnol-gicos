@@ -1,4 +1,4 @@
-"""CLI de gestion y ejecucion del Centro de Recursos Tecnologicos."""
+﻿"""CLI de gestion y ejecucion del Centro de Recursos Tecnologicos."""
 
 from __future__ import annotations
 
@@ -237,6 +237,17 @@ def clean_cmd(
         if ddir.exists():
             shutil.rmtree(ddir)
             console.print("[green]Todos los datos locales han sido eliminados.[/green]")
+
+@app.command("gui")
+def gui_cmd() -> None:
+    """Abre la aplicacion grafica de escritorio para gestionar todas las herramientas."""
+    try:
+        from recursos.gui.app import main as gui_main
+        gui_main()
+    except Exception as exc:
+        console.print(f"[red]Error al abrir la interfaz grafica:[/] {exc}")
+        raise typer.Exit(code=1)
+
 
 
 # --- Subcomandos de plugins ---
