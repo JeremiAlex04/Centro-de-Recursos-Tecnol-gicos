@@ -1,4 +1,4 @@
-﻿"""CLI de gestion y ejecucion del Centro de Recursos Tecnologicos."""
+"""CLI de gestion y ejecucion del Centro de Recursos Tecnologicos."""
 
 from __future__ import annotations
 

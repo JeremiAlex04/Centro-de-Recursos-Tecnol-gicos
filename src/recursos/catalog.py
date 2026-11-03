@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sys
 import unicodedata
 from pathlib import Path
 from typing import Optional
@@ -21,8 +22,19 @@ def default_catalog_dir() -> Path:
     env = os.environ.get("RECURSOS_CATALOG")
     if env:
         return Path(env)
-    # desarrollo: <repo>/catalog  (src/recursos/catalog.py -> parents[2])
-    return Path(__file__).resolve().parents[2] / "catalog"
+    # PyInstaller bundle: sys._MEIPASS
+    meipass = getattr(sys, "_MEIPASS", None)
+    if meipass and (Path(meipass) / "catalog").is_dir():
+        return Path(meipass) / "catalog"
+    # Entorno de desarrollo: <repo>/catalog
+    dev_cat = Path(__file__).resolve().parents[2] / "catalog"
+    if dev_cat.is_dir():
+        return dev_cat
+    # Junto al ejecutable:
+    exe_cat = Path(sys.executable).parent / "catalog"
+    if exe_cat.is_dir():
+        return exe_cat
+    return dev_cat
 
 
 def load_catalog(directory: Optional[Path] = None) -> list[Tool]:
