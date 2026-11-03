@@ -1,0 +1,29 @@
+id: diskpart-usb
+name: USB doble particion - limpieza con diskpart
+category: almacenamiento
+summary: Recupera la capacidad de una USB con particiones multiples usando diskpart.
+context: >-
+  diskpart gestiona discos y particiones a bajo nivel. El comando clean borra la tabla de
+  particiones completa y deja la unidad como nueva.
+purpose:
+  - Recuperar la capacidad total de una USB que fue booteable.
+  - Reparar memorias que Windows no puede formatear.
+tags: [usb, particion, diskpart, formatear]
+symptoms: ["usb con dos particiones", "usb muestra menos capacidad", "no se puede formatear usb"]
+risk: high
+requires_admin: true
+requires_internet: false
+license: nativo de Windows
+source:
+  type: native_command
+  command: diskpart
+steps:
+  - "diskpart"
+  - "list disk"
+  - "select disk X (X = numero de la USB, identificala por su tamano)"
+  - "detail disk (confirma que es la USB correcta)"
+  - "clean"
+  - "Habilitar el volumen en Administracion de equipos > Administracion de discos."
+warnings:
+  - "clean BORRA todo el disco seleccionado sin confirmacion. Verifica siempre con detail disk."
+docs: Guia/Almacenamiento/USB-Doble-Partition/README.md

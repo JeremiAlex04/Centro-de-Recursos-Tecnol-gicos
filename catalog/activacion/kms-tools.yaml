@@ -1,0 +1,29 @@
+id: kms-tools
+name: Ratiborus KMS Tools Lite / KMS Lite
+category: activacion
+summary: Paquete portable de activadores KMS y utilidades de Office.
+context: >-
+  Coleccion difundida en soporte tecnico que agrupa activadores y utilidades de
+  mantenimiento de Office. Version 07.09.2024. Procede de un sitio de terceros.
+purpose:
+  - AAct Network y KMSoffline - activacion KMS de Windows y Office.
+  - W10 Digital Activation - licencia digital.
+  - KMSCleaner, Office Installer, Office Uninstall y ClearTemp.
+tags: [kms, activar, office, ratiborus]
+symptoms: ["office danado reinstalar", "windows no activado"]
+risk: high
+requires_admin: true
+requires_internet: false
+license: no especificada
+source:
+  type: local_file
+  path: PC/Desbloquear/KMS Tools.zip
+  sha256: D16C0F9DED5E930AD99E692991D4E59EE38416561CF3BA0AC02472AE02AE8D5C
+steps:
+  - Descomprimir KMS Tools.zip (la contrasena esta en PC/Desbloquear/KMS Lite - Contrasena.txt).
+  - Ejecutar KMS Tools Portable como administrador.
+  - Elegir la utilidad segun la necesidad.
+warnings:
+  - Paquete no oficial obtenido de un sitio de cracks; los antivirus lo detectan y puede contener malware.
+  - El hash solo confirma que es el mismo archivo del repo, no que sea seguro. Probar en una VM.
+docs: Scripts/Activacion/KMS-Tools/README.md

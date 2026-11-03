@@ -1,0 +1,24 @@
+id: sql-antiguos
+name: Versiones antiguas de SQL Server
+category: virtualizacion
+summary: Enlace a una recopilacion de instaladores de versiones antiguas de SQL Server.
+context: >-
+  Muchos sistemas contables o de punto de venta solo funcionan con una version concreta de
+  SQL Server (2005, 2008 R2, 2012) que Microsoft ya no publica con facilidad.
+purpose:
+  - Descargar la version exacta que exige un software heredado.
+tags: [sql, sql-server, base-de-datos, legado]
+symptoms: ["software antiguo exige sql server", "migrar sistema contable"]
+risk: low
+requires_admin: true
+requires_internet: true
+license: segun version
+source:
+  type: url
+  url: https://zonasql.com/descargar-versiones-antiguas-de-sql-server
+steps:
+  - Confirmar con el proveedor del software la version y edicion necesarias.
+  - Descargar desde zonasql.com.
+  - Activar .NET Framework 3.5 si la version lo requiere.
+  - Instalar con la instancia y autenticacion que pida el software.
+docs: Recursos/SQL/Versiones-SQL-Server-Antiguas/README.md

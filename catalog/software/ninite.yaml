@@ -1,0 +1,26 @@
+id: ninite
+name: Ninite
+category: software
+summary: Instalador masivo y silencioso de aplicaciones populares.
+context: >-
+  Instalar programas uno por uno implica muchas descargas y pantallas Siguiente.
+  Ninite genera un unico instalador que lo hace todo sin publicidad.
+purpose:
+  - Instalar navegadores, compresores, reproductores y runtimes en un solo paso.
+  - Volver a ejecutar el mismo instalador actualiza los programas.
+tags: [instalar, programas, silencioso, formateo]
+symptoms: ["equipo recien formateado", "instalar varios programas"]
+risk: low
+requires_admin: true
+requires_internet: true
+license: free (uso personal)
+source:
+  type: url
+  url: https://ninite.com/
+steps:
+  - Entrar a ninite.com y marcar las aplicaciones.
+  - Pulsar Get Your Ninite y ejecutar el .exe descargado.
+  - Esperar a que termine; no pide mas interaccion.
+warnings:
+  - Guarda tu Ninite.exe personalizado en una USB para reutilizarlo.
+docs: Herramientas/Sistemas/Ninite/README.md

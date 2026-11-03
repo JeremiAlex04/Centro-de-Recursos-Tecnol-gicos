@@ -1,0 +1,30 @@
+id: driver-booster
+name: IObit Driver Booster
+category: drivers
+summary: Detecta y actualiza controladores faltantes, obsoletos o danados.
+context: >-
+  Buscar drivers a mano para cada componente es lento. Driver Booster detecta el hardware
+  y descarga los controladores desde su base de datos.
+purpose:
+  - Detectar drivers faltantes, obsoletos o danados.
+  - Instalar componentes de juegos (DirectX, Visual C++, .NET).
+  - Reparar sin sonido, sin red o resolucion incorrecta.
+  - Respaldo y restauracion de drivers.
+tags: [drivers, controladores, sonido, red, video]
+symptoms: ["sin sonido", "sin wifi", "dispositivo desconocido", "resolucion incorrecta"]
+risk: medium
+requires_admin: true
+requires_internet: true
+license: freemium
+source:
+  type: local_file
+  path: PC/APP Repara - Driver Booster.exe
+  sha256: 121939369E335B9A2AE70DE256F0FBBE05C4837C0553D65BEE17BB3854304A01
+steps:
+  - Instalar y desmarcar los programas adicionales que ofrece el instalador.
+  - Pulsar Escanear y luego Actualizar ahora.
+  - Reiniciar el equipo al terminar.
+warnings:
+  - Activa la creacion de punto de restauracion antes de actualizar.
+  - En portatiles de marca, prioriza los drivers del fabricante si algo falla.
+docs: Herramientas/Sistemas/Driver-Booster/README.md

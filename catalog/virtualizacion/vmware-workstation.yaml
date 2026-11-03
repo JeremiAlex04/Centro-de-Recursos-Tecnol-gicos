@@ -1,0 +1,26 @@
+id: vmware-workstation
+name: VMware Workstation (26H1)
+category: virtualizacion
+summary: Hipervisor de escritorio para ejecutar maquinas virtuales.
+context: >-
+  Permite ejecutar otros sistemas operativos dentro de una ventana, aislados del equipo real.
+  Es el laboratorio del tecnico.
+purpose:
+  - Probar herramientas dudosas sin riesgo para el equipo principal.
+  - Ejecutar programas antiguos en Windows XP/7.
+  - Usar instantaneas (snapshots) para volver atras en segundos.
+tags: [vmware, maquina-virtual, laboratorio, pruebas]
+symptoms: ["probar sistema sin riesgo", "programa antiguo no corre"]
+risk: low
+requires_admin: true
+requires_internet: false
+license: free
+source:
+  type: local_file
+  path: Recursos/Virtualizacion/VMware-Workstation-Full-26H1-25388281.exe
+  sha256: A0EF9087607D9CAD20B08139E73E41242E044AD5BD8CEE141D3BAD314586737F
+steps:
+  - Activar la virtualizacion (VT-x / AMD-V) en la BIOS/UEFI.
+  - Instalar con el .exe del repositorio (~274 MB, Git LFS).
+  - Create a New Virtual Machine y elegir la ISO del sistema.
+  - Instalar VMware Tools y tomar una instantanea limpia.

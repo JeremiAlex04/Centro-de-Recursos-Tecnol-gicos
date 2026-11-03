@@ -1,0 +1,28 @@
+id: mas
+name: Microsoft Activation Script (MAS)
+category: activacion
+summary: Script de codigo abierto para activar Windows y Office.
+context: >-
+  Proyecto documentado en massgrave.dev. No requiere descargar ejecutables; se lanza con un
+  comando de PowerShell.
+purpose:
+  - Metodos HWID, Ohook, TSforge y Online KMS segun el producto.
+  - Revisar el estado de activacion.
+tags: [activar, windows, office, licencia]
+symptoms: ["windows no activado", "marca de agua activar windows", "office sin activar"]
+risk: high
+requires_admin: true
+requires_internet: true
+license: free (GPL)
+source:
+  type: script
+  url: https://get.activated.win
+steps:
+  - Abrir PowerShell como Administrador.
+  - "Ejecutar: irm https://get.activated.win | iex"
+  - Elegir en el menu el metodo correspondiente al producto.
+  - "Verificar en Configuracion > Sistema > Activacion."
+warnings:
+  - No es una herramienta oficial de Microsoft; activar sin licencia valida puede infringir sus terminos.
+  - Los antivirus suelen detectarla como HackTool. Probar primero en una maquina virtual.
+docs: Herramientas/Activacion/Microsoft-Activation-Script-MAS/README.md

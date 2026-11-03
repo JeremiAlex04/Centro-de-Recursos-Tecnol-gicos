@@ -1,0 +1,24 @@
+id: msiexec-admin
+name: Lanzar msiexec con privilegios de administrador
+category: sistema
+summary: Truco nativo para ejecutar instaladores que no abren o fallan por permisos.
+context: >-
+  A veces un instalador no hace nada al dar doble clic o falla con errores de permisos.
+  Lanzarlo desde el Administrador de tareas con privilegios elevados suele resolverlo.
+purpose:
+  - Ejecutar msiexec.exe o cualquier instalador con permisos de administrador.
+tags: [instalador, msi, permisos, administrador]
+symptoms: ["instalador no abre", "error de permisos al instalar", "no ejecuta app"]
+risk: low
+requires_admin: true
+requires_internet: false
+license: nativo de Windows
+source:
+  type: native_command
+  command: msiexec.exe
+steps:
+  - "Abrir el Administrador de tareas (Ctrl + Shift + Esc)."
+  - "Archivo > Ejecutar nueva tarea."
+  - "Escribir msiexec.exe (o la ruta completa del instalador)."
+  - "Marcar 'Crear esta tarea con privilegios administrativos' y Aceptar."
+docs: PC/No ejecuta App.exe/Instruccion.JPG

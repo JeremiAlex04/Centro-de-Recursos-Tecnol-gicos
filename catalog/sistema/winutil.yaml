@@ -1,0 +1,30 @@
+id: winutil
+name: Chris Titus Tech - Windows Utility (WinUtil)
+category: sistema
+summary: Navaja suiza de PowerShell para instalar programas, quitar bloatware y ajustar Windows.
+context: >-
+  Script de codigo abierto creado por Chris Titus. Reune en una ventana tareas que
+  normalmente requieren muchos clics, ediciones de registro y comandos.
+purpose:
+  - Instalar y actualizar programas en lote (winget / chocolatey).
+  - Aplicar tweaks - quitar bloatware, telemetria y servicios innecesarios.
+  - Activar caracteristicas de Windows (.NET, Hyper-V, WSL).
+  - Controlar Windows Update.
+tags: [optimizar, bloatware, telemetria, programas, winget]
+symptoms: ["windows lento", "equipo con bloatware", "preparar pc nueva"]
+risk: medium
+requires_admin: true
+requires_internet: true
+license: free (MIT)
+source:
+  type: script
+  url: https://christitus.com/win
+steps:
+  - Abrir PowerShell como Administrador.
+  - "Ejecutar: irm https://christitus.com/win | iex"
+  - En Tweaks elegir el perfil Standard y pulsar Run Tweaks.
+  - En Install marcar los programas y pulsar Install/Upgrade Selected.
+warnings:
+  - Crea un punto de restauracion antes de aplicar Tweaks.
+  - Evita los ajustes marcados como Advanced si no sabes que hacen.
+docs: Herramientas/Sistemas/ChrisTitus-Tech-Utility/README.md

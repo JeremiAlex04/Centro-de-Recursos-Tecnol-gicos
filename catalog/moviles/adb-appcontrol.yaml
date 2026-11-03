@@ -1,0 +1,29 @@
+id: adb-appcontrol
+name: ADB AppControl
+category: moviles
+summary: Interfaz grafica para ADB que desinstala o desactiva apps de Android sin root.
+context: >-
+  ADB es la herramienta oficial de Google para controlar Android desde la PC, pero se usa
+  por comandos. ADB AppControl la convierte en una ventana con listas y casillas.
+purpose:
+  - Desinstalar o desactivar apps del sistema (bloatware) sin root.
+  - Instalar APKs en lote y respaldar apps instaladas.
+  - Gestionar permisos y ver informacion del dispositivo.
+tags: [android, adb, bloatware, apk, celular]
+symptoms: ["apps basura en celular", "no se puede desinstalar app android"]
+risk: medium
+requires_admin: false
+requires_internet: true
+license: freemium
+source:
+  type: url
+  url: https://adbappcontrol.com/en/
+steps:
+  - "En el celular: Ajustes > Acerca del telefono > tocar 7 veces Numero de compilacion."
+  - "Opciones de desarrollador > activar Depuracion USB."
+  - Instalar ADB AppControl en la PC y conectar el cable.
+  - Aceptar la huella RSA en la pantalla del celular.
+  - Marcar las apps no deseadas; prefiere Desactivar antes que Desinstalar.
+warnings:
+  - Quitar apps esenciales (launcher, servicios de Google) puede causar bucles de reinicio.
+docs: Herramientas/Celulares/ADB-AppControl/README.md

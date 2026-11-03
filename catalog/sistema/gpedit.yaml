@@ -1,0 +1,27 @@
+id: gpedit
+name: Habilitar el Editor de Directivas de Grupo Local (gpedit.msc)
+category: sistema
+summary: Script que habilita gpedit.msc en Windows Home.
+context: >-
+  Las ediciones Home de Windows no incluyen gpedit.msc, aunque los paquetes necesarios
+  vienen dentro del sistema. El script los registra con DISM.
+purpose:
+  - Bloquear actualizaciones automaticas o desactivar OneDrive/Cortana.
+  - Restringir USB y definir politicas de contrasenas.
+  - Configurar scripts de inicio sin tocar el registro a mano.
+tags: [directivas, gpedit, windows-home, politicas]
+symptoms: ["no existe gpedit.msc", "windows home sin directivas"]
+risk: low
+requires_admin: true
+requires_internet: true
+license: free
+source:
+  type: script
+  url: https://www.mediafire.com/file/wvq07imzsmfli6e/Group_Policy.bat/file
+steps:
+  - Descargar Group_Policy.bat desde el enlace.
+  - Clic derecho y Ejecutar como administrador; esperar a que termine.
+  - "Comprobar con Win + R y escribir gpedit.msc."
+warnings:
+  - El script esta alojado en un servicio de terceros; revisa su contenido antes de ejecutarlo.
+docs: Guia/Sistema/Habilitar-GPEDIT-Local/README.md

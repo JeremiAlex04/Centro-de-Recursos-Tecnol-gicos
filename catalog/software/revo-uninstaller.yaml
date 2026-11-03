@@ -1,0 +1,30 @@
+id: revo-uninstaller
+name: Revo Uninstaller Pro
+category: software
+summary: Desinstalador avanzado que elimina programas y sus restos.
+context: >-
+  El desinstalador de Windows suele dejar carpetas y claves de registro huerfanas. Si la
+  desinstalacion se corrompe, el programa ya no se puede quitar ni reinstalar.
+purpose:
+  - Desinstalacion completa con escaneo de restos.
+  - Desinstalacion forzada de programas rotos.
+  - Limpieza de rastros de navegadores y archivos basura.
+tags: [desinstalar, restos, registro, forzar]
+symptoms: ["programa no se desinstala", "restos en el registro", "forzar eliminacion de apps"]
+risk: medium
+requires_admin: true
+requires_internet: false
+license: freemium (Pro de pago)
+source:
+  type: local_file
+  path: PC/RevoUninProSetup.exe
+  sha256: 6552AE17F3A024D74DB56B083B91895D780EDE60423EACDB578A03103EDFFC21
+steps:
+  - Instalar con RevoUninProSetup.exe.
+  - Seleccionar el programa y pulsar Desinstalar.
+  - Tras el desinstalador original, escanear en modo Avanzado.
+  - Borrar solo las entradas marcadas en negrita.
+  - Si no aparece, usar Desinstalacion forzada indicando la ruta.
+warnings:
+  - Revisa lo que marcas en el registro; borra solo lo que esta en negrita.
+docs: Herramientas/Desinstalacion/Revo-Uninstaller/README.md

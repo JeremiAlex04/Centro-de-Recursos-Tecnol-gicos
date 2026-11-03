@@ -1,0 +1,24 @@
+id: zofti-impresoras
+name: Drivers de impresoras (Zofti)
+category: drivers
+summary: Sitio con drivers de impresoras de muchas marcas, incluidos modelos antiguos.
+context: >-
+  Las impresoras son de los perifericos que mas soporte demandan. Zofti centraliza
+  controladores de Epson, HP, Canon, Brother, Ricoh y otras marcas.
+purpose:
+  - Encontrar el controlador correcto cuando la impresora no se detecta.
+  - Resolver impresiones con caracteres extranos o tras reinstalar Windows.
+tags: [impresora, drivers, epson, hp, canon, brother]
+symptoms: ["impresora no imprime", "impresora no se reconoce"]
+risk: low
+requires_admin: true
+requires_internet: true
+license: free
+source:
+  type: url
+  url: https://zofti.com/
+steps:
+  - Identificar el modelo exacto de la impresora.
+  - Buscar el modelo en zofti.com y descargar el driver (32/64 bits).
+  - Instalar con la impresora desconectada y conectarla cuando el asistente lo pida.
+docs: Herramientas/Impresoras/Drivers-Impresoras-Zofti/README.md
