@@ -1,10 +1,10 @@
-<#
+﻿<#
 .SYNOPSIS
     Instalador y lanzador instantaneo de recursos-jeremialex04 para Windows.
 .DESCRIPTION
     Permite usar el comando 'recursos-jeremialex04' o 'recursos' en cualquier equipo
     con solo ejecutar:
-        irm https://raw.githubusercontent.com/JeremiAlex04/Centro-de-Recursos-Tecnol-gicos/master/bootstrap.ps1 | iex
+        irm https://raw.githubusercontent.com/JeremiAlex04/Centro-de-Recursos-Tecnol-gicos/prueba/bootstrap.ps1 | iex
 #>
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -46,7 +46,7 @@ if ($NeedsDownload) {
         $PythonCmd = (Get-Command python -ErrorAction SilentlyContinue)
         if ($PythonCmd) {
             Write-Host "[+] Python detectado. Instalando paquete con pip..." -ForegroundColor Green
-            & python -m pip install --quiet --upgrade "git+https://github.com/$Repo.git"
+            & python -m pip install --quiet --upgrade "git+https://github.com/$Repo.git@prueba"
             $InstalledExe = (Get-Command $AppName -ErrorAction SilentlyContinue)
             if ($InstalledExe) {
                 $ExePath = $InstalledExe.Source
@@ -84,7 +84,7 @@ Write-Host "----------------------------------------------------------" -Foregro
 
 # 5. Ejecutar la ayuda inicial
 if (Test-Path $ExePath) {
-    & $ExePath --help
+    & $ExePath
 } else {
-    & $AppName --help
+    & $AppName
 }

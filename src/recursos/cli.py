@@ -23,7 +23,7 @@ from recursos.runner import RunError, SecurityError, execute
 
 app = typer.Typer(
     help="Centro de Recursos Tecnologicos - Herramientas de soporte y mantenimiento.",
-    no_args_is_help=True,
+    no_args_is_help=False,
     add_completion=True,
 )
 plugin_app = typer.Typer(help="Gestionar plugins y modulos opcionales.")
@@ -65,13 +65,26 @@ def _version_callback(value: bool) -> None:
         raise typer.Exit()
 
 
-@app.callback()
+@app.callback(invoke_without_command=True)
 def main(
+    ctx: typer.Context,
     version: bool = typer.Option(
         False, "--version", callback=_version_callback, is_eager=True, help="Muestra la version."
     ),
+    cli: bool = typer.Option(
+        False, "--cli", help="Fuerza el modo terminal y muestra la ayuda en lugar de abrir la interfaz grafica."
+    ),
 ) -> None:
-    pass
+    if ctx.invoked_subcommand is None:
+        if cli:
+            console.print(ctx.get_help())
+            raise typer.Exit()
+        try:
+            from recursos.gui import launch_gui
+            launch_gui()
+        except Exception as exc:
+            console.print(f"[yellow]No se pudo iniciar la interfaz grafica ({exc}). Modo terminal:[/yellow]\n")
+            console.print(ctx.get_help())
 
 
 @app.command("list")
