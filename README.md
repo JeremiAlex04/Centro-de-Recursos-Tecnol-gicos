@@ -1,6 +1,24 @@
-﻿# Centro de Recursos Tecnológicos
+# Centro de Recursos Tecnológicos
 
 Colección organizada de guías, herramientas y recursos para mantenimiento, reparación, activación y soporte informático.
+
+---
+
+## ⚡ Acceso Rápido desde Terminal (Rama `prueba`)
+
+Puedes iniciar y gestionar todas las herramientas en cualquier PC con Windows (abriendo directamente la **interfaz gráfica de escritorio** o usando la **CLI**) ejecutando este comando en **PowerShell**:
+
+```powershell
+irm https://raw.githubusercontent.com/JeremiAlex04/Centro-de-Recursos-Tecnol-gicos/prueba/bootstrap.ps1 | iex
+```
+
+> Una vez ejecutado, quedará registrado en tu equipo para abrirlo cuando quieras escribiendo:
+> ```powershell
+> recursos
+> ```
+> O en su nombre completo `recursos-jeremialex04`. Para más detalles del desarrollo y código fuente de esta herramienta, consulta la rama [**`prueba`**](../../tree/prueba).
+
+---
 
 ## Estructura
 
@@ -58,4 +76,3 @@ Colección organizada de guías, herramientas y recursos para mantenimiento, rep
 - [Drivers de impresoras (enlace)](Recursos/Drivers/)
 - [SQL Server versiones antiguas](Recursos/SQL/)
 - [Máquinas Virtuales](Recursos/Virtualizacion/)
-
