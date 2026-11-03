@@ -1,14 +1,13 @@
 @echo off
-title Centro de Recursos Tecnologicos
+title Centro de Recursos Tecnologicos - GUI
 chcp 65001 >nul
-cd /d "%~dp0"
 
-:: Verificar si existe el entorno virtual con las dependencias
-if exist ".venv\Scripts\pythonw.exe" (
-    start "" ".venv\Scripts\pythonw.exe" -m recursos.gui.app
-) else if exist ".venv\Scripts\python.exe" (
-    start "" ".venv\Scripts\python.exe" -m recursos.gui.app
+echo Iniciando interfaz grafica de escritorio...
+
+if exist ".venv\Scripts\python.exe" (
+    start "" ".venv\Scripts\pythonw.exe" -m recursos.gui
 ) else (
-    echo Iniciando aplicacion de escritorio...
-    python -m recursos.gui.app
+    pythonw -m recursos.gui 2>nul || python -m recursos.gui
 )
+
+exit

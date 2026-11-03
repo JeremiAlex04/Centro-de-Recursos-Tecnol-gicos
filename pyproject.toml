@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "recursos-jeremialex04"
 version = "0.1.0"
-description = "CLI y Aplicacion de Escritorio para gestionar el Centro de Recursos Tecnologicos"
+description = "CLI y GUI para consultar y usar las herramientas del Centro de Recursos Tecnologicos"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -13,7 +13,7 @@ dependencies = [
     "rich>=13",
     "pydantic>=2",
     "pyyaml>=6",
-    "customtkinter>=6.0",
+    "customtkinter>=5.2",
 ]
 
 [project.optional-dependencies]
@@ -22,7 +22,7 @@ dev = ["pytest>=8", "ruff>=0.5"]
 [project.scripts]
 recursos-jeremialex04 = "recursos.cli:app"
 recursos = "recursos.cli:app"
-recursos-gui = "recursos.gui.app:main"
+recursos-gui = "recursos.gui:launch_gui"
 
 [tool.setuptools.packages.find]
 where = ["src"]

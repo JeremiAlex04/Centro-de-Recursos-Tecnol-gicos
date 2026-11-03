@@ -242,8 +242,8 @@ def clean_cmd(
 def gui_cmd() -> None:
     """Abre la aplicacion grafica de escritorio para gestionar todas las herramientas."""
     try:
-        from recursos.gui.app import main as gui_main
-        gui_main()
+        from recursos.gui import launch_gui
+        launch_gui()
     except Exception as exc:
         console.print(f"[red]Error al abrir la interfaz grafica:[/] {exc}")
         raise typer.Exit(code=1)
@@ -292,3 +292,4 @@ def plugin_disable(name: str = typer.Argument(..., help="Nombre del plugin.")) -
     """Deshabilita un plugin opcional."""
     config.set_plugin(name, False)
     console.print(f"[green]Plugin '{name}' deshabilitado.[/green]")
+
