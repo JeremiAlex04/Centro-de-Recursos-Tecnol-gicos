@@ -4,6 +4,8 @@ Colección organizada de guías, herramientas y recursos para mantenimiento, rep
 
 ## Estructura
 
+> 🧰 **[Ver el Catálogo interactivo de herramientas](CATALOGO-HERRAMIENTAS.md)** — clasificadas por categoría, con contexto, utilidad y pasos de uso.
+
 - [Herramientas/](Herramientas/) - Utilidades y herramientas organizadas por categoría
 - [Guia/](Guia/) - Guías paso a paso
 - [Recursos/](Recursos/) - Enlaces/recursos complementarios
