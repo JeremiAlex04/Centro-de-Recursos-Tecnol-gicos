@@ -1,12 +1,10 @@
-"""Comandos de consulta: list, search, info (fase 2 del plan).
-
-La ejecucion de herramientas (run/install) se implementa en la fase 3, junto con la
-verificacion de hash y las confirmaciones de riesgo.
-"""
+"""CLI de gestion y ejecucion del Centro de Recursos Tecnologicos."""
 
 from __future__ import annotations
 
 import json
+import shutil
+from pathlib import Path
 from typing import Optional
 
 import typer
@@ -14,15 +12,23 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from recursos import __version__
+from recursos import __version__, config
 from recursos.catalog import CatalogError, filter_tools, get_tool, load_catalog, search
+from recursos.diagnose import run_diagnose
+from recursos.docs_builder import build_markdown
+from recursos.doctor import run_doctor
 from recursos.models import Category, Risk, Tool
+from recursos.offline import export_offline_bundle
+from recursos.runner import RunError, SecurityError, execute
 
 app = typer.Typer(
-    help="Catalogo de herramientas de soporte tecnico: consulta y uso.",
+    help="Centro de Recursos Tecnologicos - Herramientas de soporte y mantenimiento.",
     no_args_is_help=True,
     add_completion=True,
 )
+plugin_app = typer.Typer(help="Gestionar plugins y modulos opcionales.")
+app.add_typer(plugin_app, name="plugin")
+
 console = Console()
 
 RISK_STYLE = {Risk.low: "green", Risk.medium: "yellow", Risk.high: "red"}
@@ -133,3 +139,145 @@ def info_cmd(tool_id: str = typer.Argument(..., help="ID de la herramienta (ver 
         console.print(f"\n[bold {color}]AVISO:[/] {w}")
     if tool.docs:
         console.print(f"\n[dim]Documentacion: {tool.docs}[/dim]")
+
+
+@app.command("run")
+def run_cmd(
+    tool_id: str = typer.Argument(..., help="ID de la herramienta a ejecutar."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Muestra que haria sin ejecutar nada."),
+    yes: bool = typer.Option(False, "--yes", "-y", help="Acepta confirmaciones de riesgo medio automaticamente."),
+) -> None:
+    """Ejecuta una herramienta con validacion de integridad y seguridad."""
+    tool = get_tool(_load(), tool_id)
+    if tool is None:
+        console.print(f"[red]Herramienta no encontrada:[/] '{tool_id}'. Usa 'list' para ver las disponibles.")
+        raise typer.Exit(code=1)
+    try:
+        execute(tool, dry_run=dry_run, assume_yes=yes, console=console)
+    except (RunError, SecurityError) as e:
+        console.print(f"[bold red]Error:[/] {e}")
+        raise typer.Exit(code=1)
+
+
+@app.command("install")
+def install_cmd(
+    tool_id: str = typer.Argument(..., help="ID del programa a instalar."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Simula la instalacion."),
+    yes: bool = typer.Option(False, "--yes", "-y", help="Acepta confirmaciones automaticamente."),
+) -> None:
+    """Instala o descarga un programa (alias de run para herramientas instalables)."""
+    tool = get_tool(_load(), tool_id)
+    if tool is None:
+        console.print(f"[red]Herramienta no encontrada:[/] '{tool_id}'")
+        raise typer.Exit(code=1)
+    try:
+        execute(tool, dry_run=dry_run, assume_yes=yes, console=console, install=True)
+    except (RunError, SecurityError) as e:
+        console.print(f"[bold red]Error:[/] {e}")
+        raise typer.Exit(code=1)
+
+
+@app.command("diagnose")
+def diagnose_cmd() -> None:
+    """Asistente interactivo para diagnosticar fallas en el equipo."""
+    tool = run_diagnose(console)
+    if tool:
+        run_now = typer.confirm("Deseas ejecutar esta herramienta ahora?", default=True)
+        if run_now:
+            try:
+                execute(tool, dry_run=False, assume_yes=False, console=console)
+            except (RunError, SecurityError) as e:
+                console.print(f"[red]Error al ejecutar:[/] {e}")
+
+
+@app.command("doctor")
+def doctor_cmd() -> None:
+    """Verifica privilegios de administrador, PowerShell, internet y espacio en disco."""
+    ok = run_doctor(console)
+    if not ok:
+        raise typer.Exit(code=1)
+
+
+@app.command("docs")
+def docs_cmd(
+    build: bool = typer.Option(False, "--build", help="Genera CATALOGO-HERRAMIENTAS.md desde el catalogo YAML."),
+    output: Optional[Path] = typer.Option(None, "--output", "-o", help="Ruta del archivo Markdown a generar."),
+) -> None:
+    """Construye o consulta la documentacion automatica."""
+    if build:
+        tools = _load()
+        md_text = build_markdown(tools)
+        target = output or (config.repo_root() / "CATALOGO-HERRAMIENTAS.md" if config.repo_root() else Path("CATALOGO-HERRAMIENTAS.md"))
+        target.write_text(md_text, encoding="utf-8")
+        console.print(f"[green]Documentacion generada en:[/] {target}")
+    else:
+        console.print("Usa [bold]--build[/bold] para regenerar CATALOGO-HERRAMIENTAS.md.")
+
+
+@app.command("export-offline")
+def export_offline_cmd(
+    dest: Path = typer.Argument(..., help="Carpeta destino o unidad USB (ej.: E:\\Recursos)."),
+) -> None:
+    """Exporta el catalogo y los instaladores para usar la herramienta sin conexion."""
+    export_offline_bundle(dest, console)
+
+
+@app.command("clean")
+def clean_cmd(
+    all_data: bool = typer.Option(False, "--all", help="Elimina tambien logs y configuraciones."),
+) -> None:
+    """Limpia los archivos temporales y binarios descargados en cache."""
+    cdir = config.cache_dir()
+    if cdir.exists():
+        shutil.rmtree(cdir)
+        cdir.mkdir(parents=True, exist_ok=True)
+        console.print("[green]Cache temporal limpiada con exito.[/green]")
+    if all_data:
+        ddir = config.data_dir()
+        if ddir.exists():
+            shutil.rmtree(ddir)
+            console.print("[green]Todos los datos locales han sido eliminados.[/green]")
+
+
+# --- Subcomandos de plugins ---
+
+@plugin_app.command("list")
+def plugin_list() -> None:
+    """Lista el estado de los plugins disponibles."""
+    table = Table(header_style="bold cyan")
+    table.add_column("Plugin")
+    table.add_column("Estado")
+    table.add_column("Descripcion")
+
+    act_enabled = config.plugin_enabled("activation")
+    table.add_row(
+        "activation",
+        "[green]Habilitado[/green]" if act_enabled else "[yellow]Deshabilitado[/yellow]",
+        "Herramientas de activacion (MAS, KMS). Requiere revision de licencias.",
+    )
+    console.print(table)
+
+
+@plugin_app.command("enable")
+def plugin_enable(name: str = typer.Argument(..., help="Nombre del plugin (ej.: activation)")) -> None:
+    """Habilita un plugin opcional."""
+    if name == "activation":
+        console.print("[bold yellow]ADVERTENCIA DE RESPONSABILIDAD LEGAL Y SEGURIDAD[/bold yellow]")
+        console.print("Las herramientas del plugin de activacion no son oficiales de Microsoft.")
+        console.print("El uso de estas herramientas debe cumplir con los terminos de licenciamiento.")
+        confirm = typer.confirm("Entiendo y deseo habilitar este plugin?", default=False)
+        if confirm:
+            config.set_plugin(name, True)
+            console.print("[green]Plugin 'activation' habilitado.[/green]")
+        else:
+            console.print("[yellow]Operacion cancelada.[/yellow]")
+    else:
+        config.set_plugin(name, True)
+        console.print(f"[green]Plugin '{name}' habilitado.[/green]")
+
+
+@plugin_app.command("disable")
+def plugin_disable(name: str = typer.Argument(..., help="Nombre del plugin.")) -> None:
+    """Deshabilita un plugin opcional."""
+    config.set_plugin(name, False)
+    console.print(f"[green]Plugin '{name}' deshabilitado.[/green]")

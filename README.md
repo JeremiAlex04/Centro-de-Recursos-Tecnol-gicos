@@ -1,11 +1,49 @@
-﻿# Centro de Recursos Tecnológicos
+# Centro de Recursos Tecnológicos
 
 Colección organizada de guías, herramientas y recursos para mantenimiento, reparación, activación y soporte informático.
 
-## Estructura
-
 > 🧰 **[Ver el Catálogo interactivo de herramientas](CATALOGO-HERRAMIENTAS.md)** — clasificadas por categoría, con contexto, utilidad y pasos de uso.
 
+---
+
+## ⚡ CLI `recursos-jeremialex04` (Acceso instantáneo en cualquier PC)
+
+Puedes acceder a todas estas herramientas desde cualquier computadora con Windows ejecutando una sola línea en PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/JeremiAlex04/Centro-de-Recursos-Tecnol-gicos/master/bootstrap.ps1 | iex
+```
+
+Una vez ejecutado, el comando queda registrado permanentemente en el sistema. Puedes escribir en cualquier terminal:
+```powershell
+recursos-jeremialex04
+# o simplemente:
+recursos
+```
+
+### Comandos principales
+
+| Comando | Descripción |
+|---|---|
+| `recursos list` | Lista todas las herramientas con su categoría, nivel de riesgo y requisitos |
+| `recursos list -c drivers` | Filtra por categoría (`sistema`, `software`, `drivers`, `almacenamiento`, etc.) |
+| `recursos search "wifi"` | Búsqueda por síntomas o palabras clave (ignora tildes y mayúsculas) |
+| `recursos info <id>` | Muestra ficha técnica, contexto, para qué sirve y pasos de uso detallados |
+| `recursos run <id>` | Ejecuta la herramienta seleccionada con verificación de integridad SHA-256 |
+| `recursos install <id>` | Descarga o instala un programa de soporte |
+| `recursos diagnose` | **Asistente interactivo:** te guía según la falla del equipo y sugiere la solución |
+| `recursos doctor` | Revisa privilegios de administrador, PowerShell, conexión y espacio en disco |
+| `recursos docs --build` | Regenera automáticamente el archivo `CATALOGO-HERRAMIENTAS.md` desde los YAML |
+| `recursos export-offline E:\` | Exporta todo el catálogo y binarios a un pendrive USB para emergencias sin internet |
+| `recursos clean` | Limpia los binarios y archivos temporales descargados en caché |
+| `recursos plugin list` | Gestiona módulos opcionales (ej.: activación de Windows/Office) |
+
+---
+
+## Estructura
+
+- [catalog/](catalog/) - Manifiestos YAML de cada herramienta (fuente única de verdad)
+- [src/recursos/](src/recursos/) - Código fuente del sistema CLI en Python
 - [Herramientas/](Herramientas/) - Utilidades y herramientas organizadas por categoría
 - [Guia/](Guia/) - Guías paso a paso
 - [Recursos/](Recursos/) - Enlaces/recursos complementarios
@@ -13,7 +51,6 @@ Colección organizada de guías, herramientas y recursos para mantenimiento, rep
 - [CELULARES/](CELULARES/) - Recursos para dispositivos móviles
 - [OTROS/](OTROS/) - Otros recursos
 - [public/](public/) - Recursos web (fuentes, etc.)
-- [.vscode/](.vscode/) - Configuración del workspace
 
 ## Índice rápido
 
@@ -40,24 +77,7 @@ Colección organizada de guías, herramientas y recursos para mantenimiento, rep
 - [CELULARES/](CELULARES/) - Guía ADB AppControl
 - [public/fonts/](public/fonts/README.md)
 
-## Notas
-- Los archivos binarios grandes se mantienen bajo seguimiento Git LFS según .gitattributes.
-- Se han creado README.md descriptivos para guías/enlaces sin modificar los archivos originales cuando es posible.
-- Los archivos .txt originales con documentación de herramientas han sido referenciados en los README organizados.
-
-## Organización actualizada
-
-- [Scripts/](Scripts/) - Scripts y guías ejecutables
-- [Documentacion/](Documentacion/) - Guías y referencias
-- [Recursos/](Recursos/) - Drivers, SQL, Virtualización, etc.
-- [Herramientas/](Herramientas/) - Herramientas organizadas por función
-
-### Scripts
-- [Habilitar gpedit.msc](Scripts/Windows/Group-Policy-Editor/README.md)
-- [KMS Tools (info)](Scripts/Activacion/KMS-Tools/README.md)
-
-### Recursos
-- [Drivers de impresoras (enlace)](Recursos/Drivers/)
-- [SQL Server versiones antiguas](Recursos/SQL/)
-- [Máquinas Virtuales](Recursos/Virtualizacion/)
-
+## Notas de Seguridad y Uso
+- Los binarios locales se verifican automáticamente mediante **checksum SHA-256**.
+- Los plugins de activación están desactivados por defecto y requieren confirmación explícita del usuario (`recursos plugin enable activation`).
+- Las modificaciones al sistema cuentan con advertencias de riesgo clasificadas (Bajo, Medio, Alto).
