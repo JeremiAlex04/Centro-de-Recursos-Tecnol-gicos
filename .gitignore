@@ -4,7 +4,6 @@ temp_interactive_push.bat
 .gitignore
 
 # Editor / entorno
-.vscode/
 __pycache__/
 *.egg-info/
 .venv/
@@ -13,3 +12,5 @@ build/
 .pytest_cache/
 .ruff_cache/
 .tmp/
+config.bat
+node_modules

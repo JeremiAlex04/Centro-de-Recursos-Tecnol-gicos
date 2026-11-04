@@ -7,10 +7,10 @@ def test_gui_instantiation():
         app = RecursosDesktopApp()
         assert len(app.tools) == 13
         assert app.sidebar is not None
-        assert app.main_container is not None
+        assert app.main_area is not None
+        assert app.cards_scroll is not None
         app.destroy()
     except Exception as e:
-        # En caso de entornos headless sin pantalla DISPLAY
         if "no display name" in str(e).lower() or "couldn't connect to display" in str(e).lower():
             pytest.skip("Entorno sin soporte de display gráfico")
         else:
